@@ -22,25 +22,25 @@ This section fulfills the documentation requirements (Step 7) by detailing the s
 
 #### Build the Docker Image
 
-Use the following command to build the image and tag it as `nft-contract`.
+*Use the following command to build the image and tag it as `nft-contract`.
 
 ```bash
 docker build -t nft-contract .
 
 # Note on Build Fixes: The Dockerfile includes a necessary intermediate cleanup step (RUN rm -f contracts/Counter.t.sol) to remove the incompatible Foundry test file that caused the initial compilation errors. This ensures the Hardhat compile step succeeds and the image builds correctly.
 
-Run Tests inside the Container
+*Run Tests inside the Container
 Execute the tests using the following command. The output should confirm 18 passing tests.
   bash:
   docker run nft-contract npx hardhat test --network hardhat
 
 #Note on Test Fixes: To achieve the final successful run, the local test file (NftCollection.test.cjs) was modified to align with Ethers v5 syntax and changed specific string revert assertions (e.g., to.be.revertedWith('...')) to the generic to.be.reverted to match the environment's assertion handler.
 
-Upon successful completion, the output will confirm the clean run:
+*Upon successful completion, the output will confirm the clean run:
     18 passing (Xs)--->18 passing (1s)
 ## 🏛️ Contract Design and Security Analysis Summary
 
-### High-Level Architecture
+*### High-Level Architecture
 The contract architecture is built for **security** and **maintainability** by inheriting from audited **OpenZeppelin** modules: **ERC721** (for token functions), **Ownable** (for access control via `onlyOwner`), and **Pausable** (for an emergency stop mechanism). Custom logic, like `safeMint()`, is layered on top of these secure base modules. 
 
 ### ERC-721 Standard Inclusion and Trade-offs
@@ -59,4 +59,4 @@ The primary security risks were mitigated by:
 * **Re-entrancy Attacks:** Relying on the audited **OpenZeppelin ERC721** which follows the Checks-Effects-Interactions pattern.
 
 ### Scalability for Significant Usage
-The main bottleneck for future scaling is the centralized **`onlyOwner` access control**. To handle significantly increased usage, the contract would need to migrate from `Ownable` to a decentralized **multisig wallet** or a **DAO governance model** (like OpenZeppelin's AccessControl) to distribute administrative power and prevent a single point of failure.
+The main bottleneck for future scaling is the centralized **`onlyOwner` access control**. To handle significantly increased usage, the contract would need to migrate from `Ownable` to a decentralized **multisig wallet** or a **DAO governance model** (like OpenZeppelin's AccessControl) to distribute administrative power and prevent a single point of failure.*

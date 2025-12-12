@@ -22,7 +22,7 @@ This section fulfills the documentation requirements (Step 7) by detailing the s
 
 #### Build the Docker Image
 
-*Use the following command to build the image and tag it as `nft-contract`.
+Use the following command to build the image and tag it as `nft-contract`.
 
 ```bash
 docker build -t nft-contract .
@@ -40,7 +40,7 @@ Execute the tests using the following command. The output should confirm 18 pass
     18 passing (Xs)--->18 passing (1s)
 ## 🏛️ Contract Design and Security Analysis Summary
 
-*### High-Level Architecture
+### High-Level Architecture
 The contract architecture is built for **security** and **maintainability** by inheriting from audited **OpenZeppelin** modules: **ERC721** (for token functions), **Ownable** (for access control via `onlyOwner`), and **Pausable** (for an emergency stop mechanism). Custom logic, like `safeMint()`, is layered on top of these secure base modules. 
 
 ### ERC-721 Standard Inclusion and Trade-offs

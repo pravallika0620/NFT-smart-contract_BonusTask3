@@ -1,0 +1,11 @@
+
+# Exclude local dependency folder
+node_modules/
+
+# Exclude build artifacts generated locally
+artifacts/
+cache/
+
+# Exclude IDE/OS files
+.vscode/
+.DS_Store

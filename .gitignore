@@ -1,0 +1,10 @@
+# Dependency directories
+node_modules/
+
+# Hardhat/Solidity output and cache
+cache/
+artifacts/
+
+# System specific files
+.env
+.DS_Store
